@@ -14,7 +14,7 @@ class MainController {
         ResponseEntity.ok("Hello, simple-service")
     }
 
-    @RequestMapping("/view")
+    @RequestMapping("/", produces = ["text/html"])
     fun view() = run {
         "main.html"
     }
