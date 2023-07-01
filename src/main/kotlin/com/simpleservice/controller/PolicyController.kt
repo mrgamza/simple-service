@@ -1,7 +1,8 @@
 package com.simpleservice.controller
 
+import com.simpleservice.constant.ResultCode
 import com.simpleservice.dto.PolicyResponseDto
-import org.springframework.http.ResponseEntity
+import com.simpleservice.helper.Response
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -13,13 +14,14 @@ class PolicyController {
         val startDate = Date()
         val endDate = Date()
 
-        ResponseEntity
-            .ok(listOf(
-                PolicyResponseDto(0, "Test1", startDate, endDate),
-                PolicyResponseDto(1, "Test2", startDate, endDate),
-                PolicyResponseDto(2, "Test3", startDate, endDate),
-                PolicyResponseDto(3, "Test4", startDate, endDate)
-            ))
+        val data = listOf(
+            PolicyResponseDto(0, "Test1", startDate, endDate),
+            PolicyResponseDto(1, "Test2", startDate, endDate),
+            PolicyResponseDto(2, "Test3", startDate, endDate),
+            PolicyResponseDto(3, "Test4", startDate, endDate)
+        )
+
+        Response.ok(data)
     }
 
     @GetMapping("/policy/{id}")
@@ -27,7 +29,6 @@ class PolicyController {
         val startDate = Date()
         val endDate = Date()
 
-        ResponseEntity
-            .ok(PolicyResponseDto(id, "Test${id}", startDate, endDate))
+        Response.ok(PolicyResponseDto(id, "Test${id}", startDate, endDate))
     }
 }

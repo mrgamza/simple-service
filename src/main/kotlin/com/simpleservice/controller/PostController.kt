@@ -1,6 +1,8 @@
 package com.simpleservice.controller
 
+import com.simpleservice.constant.ResultCode
 import com.simpleservice.entity.noticeBoard.Post
+import com.simpleservice.helper.Response
 import com.simpleservice.repository.noticeBoard.PostRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -22,7 +24,7 @@ class PostController {
         val success = student.title == result.title &&
                 student.comment == result.comment
 
-        ResponseEntity.ok(success)
+        Response.ok(success)
     }
 
     @GetMapping("post")
@@ -33,6 +35,6 @@ class PostController {
             postRepository.findAll()
         }
 
-        ResponseEntity.ok(student)
+        Response.ok(student)
     }
 }

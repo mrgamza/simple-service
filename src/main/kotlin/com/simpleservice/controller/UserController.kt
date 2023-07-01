@@ -1,6 +1,7 @@
 package com.simpleservice.controller
 
 import com.simpleservice.entity.donghyuk.User
+import com.simpleservice.helper.Response
 import com.simpleservice.repository.donghyuk.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -21,7 +22,7 @@ class UserController {
         val result = userRepository.save(user)
         val success = user.name == result.name && user.age == result.age
 
-        ResponseEntity.ok(success)
+        Response.ok(success)
     }
 
     @GetMapping("user")
@@ -32,6 +33,6 @@ class UserController {
             userRepository.findAll()
         }
 
-        ResponseEntity.ok(user)
+        Response.ok(user)
     }
 }
