@@ -3,7 +3,7 @@ package com.simpleservice.entity.donghyuk
 import javax.persistence.*
 
 @Entity
-data class Student(
+data class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

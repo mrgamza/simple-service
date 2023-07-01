@@ -1,7 +1,7 @@
 package com.simpleservice.controller
 
-import com.simpleservice.entity.donghyuk.Student
-import com.simpleservice.repository.donghyuk.StudentRepository
+import com.simpleservice.entity.donghyuk.User
+import com.simpleservice.repository.donghyuk.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class StudentController {
+class UserController {
 
     @Autowired
-    private lateinit var studentRepository: StudentRepository
+    private lateinit var userRepository: UserRepository
 
-    @PostMapping("student")
-    fun add(@RequestBody student: Student) = run {
-        val result = studentRepository.save(student)
-        val success = student.name == result.name && student.age == result.age
+    @PostMapping("user")
+    fun add(@RequestBody user: User) = run {
+        val result = userRepository.save(user)
+        val success = user.name == result.name && user.age == result.age
 
         ResponseEntity.ok(success)
     }
 
-    @GetMapping("student")
+    @GetMapping("user")
     fun getUser(@RequestParam(required = false) name: String?) = run {
-        val student = if (name != null) {
-            studentRepository.findByName(name)
+        val user = if (name != null) {
+            userRepository.findByName(name)
         } else {
-            studentRepository.findAll()
+            userRepository.findAll()
         }
 
-        ResponseEntity.ok(student)
+        ResponseEntity.ok(user)
     }
 }
