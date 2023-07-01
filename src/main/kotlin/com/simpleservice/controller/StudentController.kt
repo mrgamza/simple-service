@@ -1,7 +1,7 @@
 package com.simpleservice.controller
 
-import com.simpleservice.entity.Student
-import com.simpleservice.repository.StudentRepository
+import com.simpleservice.entity.donghyuk.Student
+import com.simpleservice.repository.donghyuk.StudentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
