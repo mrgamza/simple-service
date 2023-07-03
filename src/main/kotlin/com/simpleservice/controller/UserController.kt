@@ -40,12 +40,16 @@ class UserController {
 
     @PutMapping("user")
     fun modify(@RequestBody user: User) = run {
-        val find = userRepository.findByName(user.name).first()
-        find.age = user.age
+        val finds = userRepository.findByName(user.name)
 
-        val result = userRepository.save(find)
-        val success = user.name == result.name && user.age == result.age
+        var successCount = 0
+        finds.forEach { find ->
+            find.age = user.age
+            val result = userRepository.save(find)
+            val success = user.name == result.name && user.age == result.age
+            successCount += if (success) 1 else 0
+        }
 
-        Response.ok(success)
+        Response.ok(mapOf("successCount" to successCount))
     }
 }
