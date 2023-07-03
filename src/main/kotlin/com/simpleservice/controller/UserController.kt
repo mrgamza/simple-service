@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -28,11 +29,23 @@ class UserController {
     @GetMapping("user")
     fun getUser(@RequestParam(required = false) name: String?) = run {
         val user = if (name != null) {
+            print(name)
             userRepository.findByName(name)
         } else {
             userRepository.findAll()
         }
 
         Response.ok(user)
+    }
+
+    @PutMapping("user")
+    fun modify(@RequestBody user: User) = run {
+        val find = userRepository.findByName(user.name).first()
+        find.age = user.age
+
+        val result = userRepository.save(find)
+        val success = user.name == result.name && user.age == result.age
+
+        Response.ok(success)
     }
 }
