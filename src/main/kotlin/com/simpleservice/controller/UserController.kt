@@ -5,6 +5,7 @@ import com.simpleservice.helper.Response
 import com.simpleservice.repository.donghyuk.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -48,5 +49,12 @@ class UserController {
 
         val saved = userRepository.saveAll(finds)
         Response.ok(mapOf("successCount" to saved.size))
+    }
+
+    @DeleteMapping("user")
+    fun modify(@RequestParam name: String) = run {
+        val finds = userRepository.findByName(name)
+        userRepository.deleteAll(finds)
+        Response.ok(mapOf("successCount" to finds.size))
     }
 }
