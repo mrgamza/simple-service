@@ -39,19 +39,8 @@ spring:
     password: {YOUR}
 ```
 
-## Endpoint
-| Method | Endpoint            | Body                        | Description          |
-|:------:|---------------------|-----------------------------|----------------------|
-|  Get   | /                   | -                           | Welcome (String)     |
-|  Get   | /view               | -                           | Welcome (Html)       |
-|  Get   | /policy             | -                           | All Policy List      |
-|  Get   | /policy/{id}        | -                           | ID policy            |
-|  Get   | /user               | -                           | All Student List     |
-|  Get   | /user?name={name}   | -                           | Student List by name |
-|  Post  | /user               | {"name": "X","age": 1}      | Insert Student       |
-|  Get   | /post               | -                           | All Post List        |
-|  Get   | /post?title={title} | -                           | Post List by name    |
-|  Post  | /post               | {"title": "X","comment": 1} | Insert Post          |
+## Swagger
+http://localhost:8080/swagger-ui/index.html#/
 
 ## Author
 - Donghyuk Lee, mrgamza@gmail.com
