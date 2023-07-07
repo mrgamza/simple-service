@@ -30,7 +30,6 @@ class UserController {
     @GetMapping("user")
     fun getUser(@RequestParam(required = false) name: String?) = run {
         val user = if (name != null) {
-            print(name)
             userRepository.findByName(name)
         } else {
             userRepository.findAll()

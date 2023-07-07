@@ -1,6 +1,6 @@
 package com.simpleservice.dto
 
-data class BaseResponseDto(
+data class BaseResponse(
     val resultCode: String,
     val resultMessage: String,
     val data: Any?
