@@ -12,7 +12,7 @@ class MainController {
 
     @ApiOperation(value = "Hello", notes = "Say Hello.")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK !!")
+        ApiResponse(code = 200, message = "OK")
     )
     @RequestMapping("/", method = [RequestMethod.GET])
     @ResponseBody
