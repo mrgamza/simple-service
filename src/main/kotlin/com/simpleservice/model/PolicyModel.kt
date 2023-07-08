@@ -1,8 +1,8 @@
-package com.simpleservice.dto
+package com.simpleservice.model
 
 import java.util.Date
 
-data class PolicyResponse(
+data class PolicyModel(
     val id: Int,
     val name: String,
     val start: Date,

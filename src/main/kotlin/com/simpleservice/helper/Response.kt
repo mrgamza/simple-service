@@ -1,15 +1,20 @@
 package com.simpleservice.helper
 
 import com.simpleservice.constant.ResultCode
-import com.simpleservice.dto.BaseResponse
 import org.springframework.http.ResponseEntity
 
-class Response() {
+data class ResponseBody(
+    val resultCode: String,
+    val resultMessage: String,
+    val data: Any?
+)
+
+class Response {
 
     companion object {
         fun ok(data: Any? = null, resultCode: ResultCode = ResultCode.SUCCESS) = run {
             ResponseEntity.ok(
-                BaseResponse(
+                ResponseBody(
                     resultCode.code,
                     resultCode.message,
                     data
