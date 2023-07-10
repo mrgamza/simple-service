@@ -4,6 +4,7 @@ import com.simpleservice.constant.ResultCode
 import com.simpleservice.entity.noticeBoard.Post
 import com.simpleservice.helper.Response
 import com.simpleservice.repository.noticeBoard.PostRepository
+import io.swagger.annotations.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -27,6 +28,20 @@ class PostController {
         Response.ok(success)
     }
 
+    @ApiOperation(value = "get post", notes = "post를 가져온다.")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "OK")
+    )
+    @ApiImplicitParams(
+        ApiImplicitParam(
+            name = "title",
+            value = "title",
+            required = true,
+            dataType = "string",
+            paramType = "path",
+            defaultValue = "None"
+        )
+    )
     @GetMapping("post")
     fun getPost(@RequestParam(required = false) title: String?) = run {
         val student = if (title != null) {
