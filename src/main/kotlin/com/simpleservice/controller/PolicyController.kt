@@ -37,14 +37,7 @@ class PolicyController {
         ApiResponse(code = 200, message = "OK")
     )
     @ApiImplicitParams(
-        ApiImplicitParam(
-            name = "id",
-            value = "Policy ID",
-            required = true,
-            dataType = "int",
-            paramType = "path",
-            defaultValue = "None"
-        )
+        ApiImplicitParam(name = "id", value = "정책의 ID", required = true)
     )
     @GetMapping("/policy/{id}")
     fun policy(@PathVariable(name = "id") id: Int) = run {
