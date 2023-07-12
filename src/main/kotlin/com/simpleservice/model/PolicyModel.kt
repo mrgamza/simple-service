@@ -5,6 +5,7 @@ import java.util.Date
 data class PolicyModel(
     val id: Int,
     val name: String,
+    val comment: String,
     val start: Date,
     val end: Date
 )

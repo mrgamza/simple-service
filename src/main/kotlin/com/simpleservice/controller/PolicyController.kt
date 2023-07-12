@@ -23,10 +23,10 @@ class PolicyController {
         val endDate = Date()
 
         val data = listOf(
-            PolicyModel(0, "Test1", startDate, endDate),
-            PolicyModel(1, "Test2", startDate, endDate),
-            PolicyModel(2, "Test3", startDate, endDate),
-            PolicyModel(3, "Test4", startDate, endDate)
+            PolicyModel(0, "Test1", "Policy1", startDate, endDate),
+            PolicyModel(1, "Test2", "Policy2", startDate, endDate),
+            PolicyModel(2, "Test3", "Policy3", startDate, endDate),
+            PolicyModel(3, "Test4", "Policy4", startDate, endDate)
         )
 
         Response.ok(data)
@@ -44,6 +44,14 @@ class PolicyController {
         val startDate = Date()
         val endDate = Date()
 
-        Response.ok(PolicyModel(id, "Test${id}", startDate, endDate))
+        Response.ok(
+            PolicyModel(
+                id,
+                "Test ${id}",
+                "Policy ${id}",
+                startDate,
+                endDate
+            )
+        )
     }
 }
