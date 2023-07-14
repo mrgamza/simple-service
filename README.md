@@ -1,7 +1,7 @@
 # Simple Service
 Simple spring + Kotlin + JPA application
 - Policy Get 
-- Student Get, Post
+- Post Get, Post
 
 ## Database
 ```mysql
