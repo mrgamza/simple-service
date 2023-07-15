@@ -1,10 +1,9 @@
 package com.simpleservice.controller
 
-import com.simpleservice.entity.donghyuk.User
+import com.simpleservice.entity.User
 import com.simpleservice.helper.Response
-import com.simpleservice.repository.donghyuk.UserRepository
+import com.simpleservice.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

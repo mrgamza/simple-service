@@ -1,9 +1,10 @@
-package com.simpleservice.entity.donghyuk
+package com.simpleservice.entity
 
 import javax.persistence.*
 
+@Table
 @Entity
-data class User(
+data class Post(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,5 +14,8 @@ data class User(
     val name: String,
 
     @Column
-    var age: Int
+    val title: String,
+
+    @Column
+    val comment: String
 )

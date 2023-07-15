@@ -43,6 +43,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("mysql:mysql-connector-java")
 
+    implementation("org.flywaydb:flyway-core")
+
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 

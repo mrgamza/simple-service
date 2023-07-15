@@ -1,41 +1,27 @@
 # Simple Service
 Simple spring + Kotlin + JPA application
-- Policy Get 
-- Post Get, Post
+- Policy 
+- Post
+- User
 
 ## Database
-```mysql
-CREATE DATABASE {YOUR_WANT_NAME};
-
-CREATE TABLE `user`(
-	`id` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`name` VARCHAR(255) NOT NULL,
-	`age` INT
-);
-
-CREATE DATABASE {notice_board}
-
-CREATE TABLE `post`(
-    `id` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `title` VARCHAR(255) NOT NULL,
-    `comment` VARCHAR(255) NOT NULL
-);
-```
+Using flyway
+- Rule : V{date}{time}__{Description}
 
 ## application.yml
 make file and set
 ```properties
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://localhost:3306/{YOUR}?serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/notice_board?serverTimezone=UTC&characterEncoding=UTF-8
     username: {YOUR}
     password: {YOUR}
-
-  notice-datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://localhost:3306/notice_board?serverTimezone=UTC&characterEncoding=UTF-8
-    username: {YOUR}
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: jdbc:mysql://localhost:3306/notice_board?serverTimezone=UTC&characterEncoding=UTF-8
+    user: {YOUR}
     password: {YOUR}
 ```
 
