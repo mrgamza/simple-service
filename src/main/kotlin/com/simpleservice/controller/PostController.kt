@@ -21,9 +21,6 @@ class PostController {
     @ApiResponses(
         ApiResponse(code = 200, message = "OK")
     )
-    @ApiImplicitParams(
-        ApiImplicitParam(name = "post", value = "Post의 내용", required = true)
-    )
     @PostMapping("post")
     fun add(@RequestBody post: Post) = run {
         val result = postRepository.save(post)

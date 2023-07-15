@@ -8,7 +8,7 @@ data class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    private val id: Long? = null,
 
     @Column
     val name: String,
