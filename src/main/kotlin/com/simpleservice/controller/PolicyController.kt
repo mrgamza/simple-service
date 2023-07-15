@@ -17,7 +17,7 @@ class PolicyController {
     @ApiResponses(
         ApiResponse(code = 200, message = "OK")
     )
-    @GetMapping("/policy")
+    @GetMapping("/policies")
     fun policy() = run {
         val startDate = Date()
         val endDate = Date()
