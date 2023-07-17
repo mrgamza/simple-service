@@ -3,6 +3,7 @@ package com.simpleservice.entity
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.CreationTimestamp
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
+import java.sql.Timestamp
 import java.util.Date
 import javax.persistence.*
 
@@ -31,9 +32,9 @@ data class Policy(
     @JsonIgnore
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private val createdAt: Date,
+    private val createdAt: Timestamp,
 
     @JsonIgnore
     @Column(name = "updated_at")
-    private val updatedAt: Date
+    private val updatedAt: Timestamp
 )
