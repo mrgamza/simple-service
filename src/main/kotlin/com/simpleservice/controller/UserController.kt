@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.Date
 
 @RestController
 class UserController {
@@ -21,7 +22,9 @@ class UserController {
     @PostMapping("user")
     fun add(@RequestBody user: User) = run {
         val result = userRepository.save(user)
-        val success = user.name == result.name && user.age == result.age
+        val success = user.name == result.name
+                && user.age == result.age
+                && user.role == result.role
 
         Response.ok(success)
     }
