@@ -1,6 +1,8 @@
 package com.simpleservice.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import org.hibernate.annotations.CreationTimestamp
+import java.sql.Timestamp
 import javax.persistence.*
 
 @Table
@@ -19,5 +21,14 @@ data class Post(
     val title: String,
 
     @Column
-    val comment: String
+    val comment: String,
+
+    @JsonIgnore
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private val createdAt: Timestamp,
+
+    @JsonIgnore
+    @Column(name = "updated_at")
+    private val updatedAt: Timestamp
 )
