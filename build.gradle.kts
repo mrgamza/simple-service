@@ -45,6 +45,8 @@ dependencies {
 
     implementation("org.flywaydb:flyway-core")
 
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 

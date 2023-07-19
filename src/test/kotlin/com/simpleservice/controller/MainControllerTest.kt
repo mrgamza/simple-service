@@ -12,5 +12,6 @@ class MainControllerTest {
         val mainController = MainController()
         val result = mainController.index()
         assertEquals(result.statusCode.value(), 200)
+        assertEquals(result.body, "Hello, simple-service")
     }
 }
