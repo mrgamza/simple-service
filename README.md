@@ -28,6 +28,9 @@ spring:
 ## Swagger
 http://localhost:8080/swagger-ui/index.html#/
 
+## Test
+some code
+
 ## Author
 - Donghyuk Lee, mrgamza@gmail.com
 
