@@ -16,7 +16,7 @@ import java.util.*
 class PolicyController {
 
     @Autowired
-    private lateinit var policyRepository: PolicyRepository
+    lateinit var policyRepository: PolicyRepository
 
     @ApiOperation(value = "add policy", notes = "policy를 작성한다.")
     @ApiResponses(
@@ -36,7 +36,7 @@ class PolicyController {
         ApiResponse(code = 200, message = "OK")
     )
     @GetMapping("/policies")
-    fun policy() = run {
+    fun policies() = run {
         val policies = policyRepository.findAll()
         Response.ok(policies)
     }
