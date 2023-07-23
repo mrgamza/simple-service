@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 class MainControllerTest {
 
     @Autowired
-    lateinit var mainController: MainController
+    private lateinit var mainController: MainController
 
     @Test
     @DisplayName("Main test")
