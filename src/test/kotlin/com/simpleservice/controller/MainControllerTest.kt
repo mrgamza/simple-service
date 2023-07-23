@@ -19,10 +19,9 @@ class MainControllerTest {
         // given
 
         // when
+        val result = mainController.index()
 
         // then
-
-        val result = mainController.index()
         Assertions.assertThat(result.statusCode.value()).isEqualTo(200)
         Assertions.assertThat(result.body).isEqualTo("Hello, simple-service")
     }
@@ -33,10 +32,9 @@ class MainControllerTest {
         // given
 
         // when
+        val result = mainController.view()
 
         // then
-
-        val result = mainController.view()
         Assertions.assertThat(result).isEqualTo("main.html")
     }
 }
