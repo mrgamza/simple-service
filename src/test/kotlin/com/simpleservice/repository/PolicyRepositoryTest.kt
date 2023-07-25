@@ -17,7 +17,7 @@ class PolicyRepositoryTest {
     @Autowired
     private lateinit var policyRepository: PolicyRepository
 
-    var saveId: Long? = null
+    private var saveId: Long? = null
 
     @Test
     @Order(1)
