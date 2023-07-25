@@ -15,7 +15,7 @@ data class Policy(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @Column
     val title: String,
