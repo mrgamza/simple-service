@@ -12,7 +12,7 @@ data class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @Column
     val name: String,
