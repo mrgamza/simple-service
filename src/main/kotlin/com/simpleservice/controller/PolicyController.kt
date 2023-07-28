@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -67,7 +68,10 @@ class PolicyController {
         policyRepository.deleteById(id)
         val result = policyRepository.findById(id)
             .orElse(null)
-        val success = result == null
-        Response.ok(mapOf("success" to success))
+        if (result == null) {
+            ResponseEntity.noContent().build()
+        } else {
+            Response.ok(mapOf("success" to false))
+        }
     }
 }
