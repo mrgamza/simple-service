@@ -58,20 +58,26 @@ class PolicyController {
 
     @ApiOperation(value = "Delete Policy", notes = "정책을 삭제한다")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK")
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 204, message = "Success")
     )
     @ApiImplicitParams(
         ApiImplicitParam(name = "id", value = "정책의 ID", required = true)
     )
     @DeleteMapping("/policy/{id}")
     fun delete(@PathVariable(name = "id") id: Long) = run {
-        policyRepository.deleteById(id)
-        val result = policyRepository.findById(id)
-            .orElse(null)
-        if (result == null) {
+        val policy = policyRepository.findById(id).orElse(null)
+        if (policy == null) {
             ResponseEntity.noContent().build()
         } else {
-            Response.ok(mapOf("success" to false))
+            policyRepository.deleteById(id)
+            val result = policyRepository.findById(id)
+                .orElse(null)
+            if (result == null) {
+                ResponseEntity.noContent().build()
+            } else {
+                Response.ok(mapOf("success" to false))
+            }
         }
     }
 }
