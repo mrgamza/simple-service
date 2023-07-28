@@ -66,18 +66,13 @@ class PolicyController {
     )
     @DeleteMapping("/policy/{id}")
     fun delete(@PathVariable(name = "id") id: Long) = run {
-        val policy = policyRepository.findById(id).orElse(null)
-        if (policy == null) {
-            ResponseEntity.noContent().build()
-        } else {
-            policyRepository.deleteById(id)
-            val result = policyRepository.findById(id)
-                .orElse(null)
-            if (result == null) {
-                ResponseEntity.noContent().build()
-            } else {
-                Response.ok(mapOf("success" to false))
+        policyRepository.findById(id)
+            .map {
+                policyRepository.deleteById(id)
+                policyRepository.findById(id)
+                    .map { _ -> Response.ok(mapOf("success" to false)) }
+                    .orElse(ResponseEntity.noContent().build())
             }
-        }
+            .orElse(Response.ok(mapOf("success" to false)))
     }
 }
