@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
+import lombok.NonNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -66,13 +67,6 @@ class PolicyController {
     )
     @DeleteMapping("/policy/{id}")
     fun delete(@PathVariable(name = "id") id: Long) = run {
-        policyRepository.findById(id)
-            .map {
-                policyRepository.deleteById(id)
-                policyRepository.findById(id)
-                    .map { _ -> Response.ok(mapOf("success" to false)) }
-                    .orElse(ResponseEntity.noContent().build())
-            }
-            .orElse(Response.ok(mapOf("success" to false)))
+        Response.ok(policyRepository.deleteById(id))
     }
 }
