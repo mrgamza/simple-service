@@ -60,8 +60,8 @@ class PolicyController {
 
     @ApiOperation(value = "Delete Policy", notes = "정책을 삭제한다")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK"),
-        ApiResponse(code = 204, message = "Success")
+        ApiResponse(code = 204, message = "Success"),
+        ApiResponse(code = 404, message = "Post is not found")
     )
     @ApiImplicitParams(
         ApiImplicitParam(name = "id", value = "정책의 ID", required = true)
