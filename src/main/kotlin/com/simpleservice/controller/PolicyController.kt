@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import lombok.NonNull
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.lang.Exception
@@ -70,9 +71,9 @@ class PolicyController {
     fun delete(@PathVariable(name = "id") id: Long) = run {
         try {
             policyRepository.deleteById(id)
-            ResponseEntity.noContent().build<String>()
+            ResponseEntity.noContent().build<Void>()
         } catch (exception: Exception) {
-            ResponseEntity.notFound().build<String>()
+            ResponseEntity.notFound().build<Void>()
         }
     }
 }

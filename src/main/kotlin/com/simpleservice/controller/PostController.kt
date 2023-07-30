@@ -71,9 +71,9 @@ class PostController {
     fun delete(@PathVariable(name = "id") id: Long) = run {
         try {
             postRepository.deleteById(id)
-            ResponseEntity.noContent().build<String>()
+            ResponseEntity.noContent().build<Void>()
         } catch (exception: Exception) {
-            ResponseEntity.notFound().build<String>()
+            ResponseEntity.notFound().build<Void>()
         }
     }
 }
