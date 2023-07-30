@@ -2,14 +2,13 @@ package com.simpleservice.controller
 
 import com.simpleservice.entity.Post
 import com.simpleservice.helper.Response
+import com.simpleservice.helper.ResponseBody
 import com.simpleservice.repository.PostRepository
 import io.swagger.annotations.*
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+import java.lang.Exception
 
 @RestController
 class PostController {
@@ -61,5 +60,20 @@ class PostController {
     fun fetchAllPosts() = run {
         val post = postRepository.findAll()
         Response.ok(post)
+    }
+
+    @ApiOperation(value = "delete post", notes = "POST를 삭제한다.")
+    @ApiResponses(
+        ApiResponse(code = 204, message = "Success"),
+        ApiResponse(code = 404, message = "Post is not found")
+    )
+    @DeleteMapping("posts/{id}")
+    fun delete(@PathVariable(name = "id") id: Long) = run {
+        try {
+            Response.ok(postRepository.deleteById(id))
+            ResponseEntity.noContent().build<String>()
+        } catch (exception: Exception) {
+            ResponseEntity.notFound().build<String>()
+        }
     }
 }
