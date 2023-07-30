@@ -70,7 +70,7 @@ class PostController {
     @DeleteMapping("posts/{id}")
     fun delete(@PathVariable(name = "id") id: Long) = run {
         try {
-            Response.ok(postRepository.deleteById(id))
+            postRepository.deleteById(id)
             ResponseEntity.noContent().build<String>()
         } catch (exception: Exception) {
             ResponseEntity.notFound().build<String>()

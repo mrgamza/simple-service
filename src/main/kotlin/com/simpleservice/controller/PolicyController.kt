@@ -12,6 +12,7 @@ import lombok.NonNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.lang.Exception
 import java.util.*
 
 @RestController
@@ -67,6 +68,11 @@ class PolicyController {
     )
     @DeleteMapping("/policy/{id}")
     fun delete(@PathVariable(name = "id") id: Long) = run {
-        Response.ok(policyRepository.deleteById(id))
+        try {
+            policyRepository.deleteById(id)
+            ResponseEntity.noContent().build<String>()
+        } catch (exception: Exception) {
+            ResponseEntity.notFound().build<String>()
+        }
     }
 }
