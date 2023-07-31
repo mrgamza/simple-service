@@ -18,15 +18,20 @@ class PostController {
 
     @ApiOperation(value = "add post", notes = "post를 작성한다.")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK")
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 500, message = "Server DB Error")
     )
     @PostMapping("post")
     fun add(@RequestBody post: Post) = run {
-        val result = postRepository.save(post)
-        val success = post.title == result.title &&
-                post.comment == result.comment
+        try {
+            val result = postRepository.save(post)
+            val success = post.title == result.title &&
+                    post.comment == result.comment
 
-        Response.ok(success)
+            Response.ok(success)
+        } catch (exception: Exception) {
+            Response.error()
+        }
     }
 
     @ApiOperation(value = "get post for title or name", notes = "post를 가져온다.")

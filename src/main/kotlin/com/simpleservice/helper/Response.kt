@@ -1,6 +1,7 @@
 package com.simpleservice.helper
 
 import com.simpleservice.constant.ResultCode
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 
 data class ResponseBody(
@@ -20,6 +21,17 @@ class Response {
                     data
                 )
             )
+        }
+
+        fun error(resultCode: ResultCode = ResultCode.SERVER_INTERNAL_ERROR) = run {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(
+                    ResponseBody(
+                        resultCode.code,
+                        resultCode.message,
+                        null
+                    )
+                )
         }
     }
 }

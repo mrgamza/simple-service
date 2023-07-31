@@ -24,15 +24,19 @@ class PolicyController {
 
     @ApiOperation(value = "add policy", notes = "policy를 작성한다.")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK")
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 500, message = "Server DB Error")
     )
     @PostMapping("policy")
     fun add(@RequestBody policy: Policy) = run {
-        val result = policyRepository.save(policy)
-        val success = policy.title == result.title &&
-                policy.comment == result.comment
-
-        Response.ok(success)
+        try {
+            val result = policyRepository.save(policy)
+            val success = policy.title == result.title &&
+                    policy.comment == result.comment
+            Response.ok(success)
+        } catch (exception: Exception) {
+            Response.error()
+        }
     }
 
     @ApiOperation(value = "PolicyList", notes = "정책 리스트를 반환한다")
@@ -47,7 +51,8 @@ class PolicyController {
 
     @ApiOperation(value = "Get Policy", notes = "정책을 반환한다")
     @ApiResponses(
-        ApiResponse(code = 200, message = "OK")
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 404, message = "policy not found")
     )
     @ApiImplicitParams(
         ApiImplicitParam(name = "id", value = "정책의 ID", required = true)
@@ -56,7 +61,11 @@ class PolicyController {
     fun policy(@PathVariable(name = "id") id: Long) = run {
         val policy = policyRepository.findById(id)
             .orElse(null)
-        Response.ok(policy)
+        if (policy != null) {
+            Response.ok(policy)
+        } else {
+            ResponseEntity.notFound().build()
+        }
     }
 
     @ApiOperation(value = "Delete Policy", notes = "정책을 삭제한다")
