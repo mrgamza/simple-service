@@ -1,6 +1,7 @@
 package com.simpleservice.controller
 
 import com.simpleservice.entity.Policy
+import com.simpleservice.entity.User
 import com.simpleservice.helper.Response
 import com.simpleservice.repository.PolicyRepository
 import io.swagger.annotations.ApiImplicitParam
@@ -65,6 +66,36 @@ class PolicyController {
             Response.ok(policy)
         } else {
             ResponseEntity.notFound().build()
+        }
+    }
+
+    @ApiOperation(value = "Policy를 수정", notes = "Policy를 수정한다.")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 404, message = "Policy not found"),
+        ApiResponse(code = 500, message = "Policy modify error")
+    )
+    @PutMapping("policy")
+    fun modify(@RequestBody policy: Policy) = run {
+        val find = policyRepository.findById(policy.id)
+            .map { find ->
+                find.comment = policy.comment
+                find.title = policy.title
+                find.start = policy.start
+                find.end = policy.end
+                find
+            }
+            .orElse(null)
+
+        if (find != null) {
+            try {
+                policyRepository.save(find)
+                Response.ok(mapOf("successCount" to 1))
+            } catch (exception: Exception) {
+                Response.error()
+            }
+        } else {
+            ResponseEntity.notFound().build<Void>()
         }
     }
 

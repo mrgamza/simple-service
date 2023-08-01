@@ -15,19 +15,19 @@ data class Policy(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    val id: Long? = null,
+    val id: Long,
 
     @Column
-    val title: String,
+    var title: String,
 
     @Column
-    val comment: String,
+    var comment: String,
 
     @Column
-    val start: Date,
+    var start: Date,
 
     @Column
-    val end: Date,
+    var end: Date,
 
     @JsonIgnore
     @CreationTimestamp
