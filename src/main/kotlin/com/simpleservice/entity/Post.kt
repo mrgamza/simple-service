@@ -12,16 +12,16 @@ data class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    val id: Long? = null,
+    val id: Long,
 
     @Column
     val name: String,
 
     @Column
-    val title: String,
+    var title: String,
 
     @Column
-    val comment: String,
+    var comment: String,
 
     @JsonIgnore
     @CreationTimestamp

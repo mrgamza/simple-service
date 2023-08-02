@@ -1,5 +1,6 @@
 package com.simpleservice.controller
 
+import com.simpleservice.entity.Policy
 import com.simpleservice.entity.Post
 import com.simpleservice.helper.Response
 import com.simpleservice.helper.ResponseBody
@@ -65,6 +66,34 @@ class PostController {
     fun fetchAllPosts() = run {
         val post = postRepository.findAll()
         Response.ok(post)
+    }
+
+    @ApiOperation(value = "Post를 수정", notes = "Post를 수정한다.")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "OK"),
+        ApiResponse(code = 404, message = "Post not found"),
+        ApiResponse(code = 500, message = "Post modify error")
+    )
+    @PutMapping("post")
+    fun modify(@RequestBody post: Post) = run {
+        val find = postRepository.findById(post.id)
+            .map { find ->
+                find.comment = post.comment
+                find.title = post.title
+                find
+            }
+            .orElse(null)
+
+        if (find != null) {
+            try {
+                postRepository.save(find)
+                Response.ok(mapOf("successCount" to 1))
+            } catch (exception: Exception) {
+                Response.error()
+            }
+        } else {
+            ResponseEntity.notFound().build<Void>()
+        }
     }
 
     @ApiOperation(value = "delete post", notes = "POST를 삭제한다.")
