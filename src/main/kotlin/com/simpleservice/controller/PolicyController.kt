@@ -44,10 +44,24 @@ class PolicyController {
     @ApiResponses(
         ApiResponse(code = 200, message = "OK")
     )
+    @ApiImplicitParams(
+        ApiImplicitParam(name = "inTerm", value = "기간안의 데이터만 체크", required = false)
+    )
     @GetMapping("/policies")
-    fun policies() = run {
+    fun policies(@RequestParam(required = false) inTerm: Boolean?) = run {
         val policies = policyRepository.findAll()
-        Response.ok(policies)
+
+        if (inTerm == true) {
+            val date = Date()
+            Response.ok(
+                policies
+                    .filter {
+                        it.start <= date && it.end >= date
+                    }
+            )
+        } else {
+            Response.ok(policies)
+        }
     }
 
     @ApiOperation(value = "Get Policy", notes = "정책을 반환한다")
