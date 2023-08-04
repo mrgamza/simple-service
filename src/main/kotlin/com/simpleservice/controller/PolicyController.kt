@@ -104,7 +104,7 @@ class PolicyController {
         if (find != null) {
             try {
                 policyRepository.save(find)
-                Response.ok(mapOf("successCount" to 1))
+                Response.ok(mapOf("success" to true))
             } catch (exception: Exception) {
                 Response.error()
             }

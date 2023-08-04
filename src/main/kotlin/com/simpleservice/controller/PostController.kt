@@ -87,7 +87,7 @@ class PostController {
         if (find != null) {
             try {
                 postRepository.save(find)
-                Response.ok(mapOf("successCount" to 1))
+                Response.ok(mapOf("success" to true))
             } catch (exception: Exception) {
                 Response.error()
             }
