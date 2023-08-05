@@ -1,7 +1,6 @@
 package com.simpleservice.controller
 
 import com.simpleservice.entity.Policy
-import com.simpleservice.entity.User
 import com.simpleservice.helper.Response
 import com.simpleservice.repository.PolicyRepository
 import io.swagger.annotations.ApiImplicitParam
@@ -9,9 +8,7 @@ import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
-import lombok.NonNull
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.lang.Exception
@@ -53,12 +50,9 @@ class PolicyController {
 
         if (inTerm == true) {
             val date = Date()
-            Response.ok(
-                policies
-                    .filter {
-                        it.start <= date && it.end >= date
-                    }
-            )
+            val inPolicies = policies
+                .filter { it.start <= date && it.end >= date }
+            Response.ok(inPolicies)
         } else {
             Response.ok(policies)
         }
@@ -75,8 +69,7 @@ class PolicyController {
     @GetMapping("/policy/{id}")
     fun policy(@PathVariable(name = "id") id: Long) = run {
         val policy = policyRepository.findById(id)
-            .orElse(null)
-        if (policy != null) {
+        if (policy.isPresent) {
             Response.ok(policy)
         } else {
             ResponseEntity.notFound().build()

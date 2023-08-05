@@ -1,9 +1,7 @@
 package com.simpleservice.controller
 
-import com.simpleservice.entity.Policy
 import com.simpleservice.entity.Post
 import com.simpleservice.helper.Response
-import com.simpleservice.helper.ResponseBody
 import com.simpleservice.repository.PostRepository
 import io.swagger.annotations.*
 import org.springframework.beans.factory.annotation.Autowired
