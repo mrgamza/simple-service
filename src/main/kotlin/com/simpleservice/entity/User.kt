@@ -37,5 +37,9 @@ data class User(
     @JsonIgnore
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private val updatedAt: Timestamp?
+    private val updatedAt: Timestamp?,
+
+    @JsonIgnore
+    @Column(name = "deleted_at")
+    private val deletedAt: Timestamp?
 )
