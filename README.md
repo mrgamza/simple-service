@@ -7,6 +7,7 @@ Simple spring + Kotlin + JPA application
 ## Database
 Using flyway
 - Rule : V{date}{time}__{Description}
+- Just run modify database
 
 ## application.yml
 make file and set
